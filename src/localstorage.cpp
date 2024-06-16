@@ -33,7 +33,7 @@ sol::optional<std::string> module::local_storage::readex(const std::string& name
 
 void module::local_storage::regist(sol::state* lua)
 {
-    lua->new_usertype<module::local_storage>("local_storage",
+    lua->new_usertype<module::local_storage>("fw_localstorage",
         "new", sol::constructors<module::local_storage()>(),
         "clear", &module::local_storage::clear,
         "close", &module::local_storage::close,
