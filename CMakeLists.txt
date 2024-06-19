@@ -46,6 +46,7 @@ else()
 	include_directories(
 		/usr/local/include/ylib
 		/usr/local/include/fastweb
+		/opt/lua54/include
 		/usr/local/include)
 	add_definitions(-DfPIC)
 endif()
@@ -76,7 +77,7 @@ else()
 			hpsocket
 			ylib
 			crypto
-			lua
+			/opt/lua54/lib/liblua.a
 			pthread
 			leveldb
 	)
