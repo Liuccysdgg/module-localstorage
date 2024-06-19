@@ -35,11 +35,20 @@ set(YLIB ${CMAKE_INSTALL_PREFIX}/../ylib)
 set(FASTWEB ${CMAKE_INSTALL_PREFIX}/../fastweb)
 
 # 包含路径
-include_directories(
-	${YLIB}/include
-	${FASTWEB}/include
-	${FASTWEB}/include/lua
-)
+if(MSVC)
+	include_directories(
+		${YLIB}/include
+		${FASTWEB}/include
+		${FASTWEB}/include/lua
+	)
+	add_definitions(/bigobj)
+else()
+	include_directories(
+		/usr/local/include/ylib
+		/usr/local/include/fastweb
+		/usr/local/include)
+	add_definitions(-DfPIC)
+endif()
 
 # 添加共享库
 add_library(${MODULE_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
@@ -67,9 +76,9 @@ else()
 			hpsocket
 			ylib
 			crypto
-			lua5.3
-			mysqlcppconn
+			lua
 			pthread
+			leveldb
 	)
 
 endif()
