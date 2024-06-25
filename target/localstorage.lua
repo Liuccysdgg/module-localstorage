@@ -6,9 +6,14 @@ localstorage.__index = localstorage
     创建一个新的 fw_localstorage 对象
     @return 返回一个新的 fw_localstorage 对象
 ]]
-function localstorage.new()
+function localstorage.new(db)
     local instance = setmetatable({}, localstorage)
-    instance.module = fw_localstorage.new()
+    if db == nil then
+        instance.module = fw_localstorage.new()
+    else
+        instance.module = db    
+    end
+    
     return instance
 end
 
